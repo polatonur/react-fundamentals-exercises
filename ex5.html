@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+    <style type="text/css">
+      input {
+        padding: 3px;
+        border-radius: 2px;
+      }
+      #root {
+        background-color: aquamarine;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">hello</div>
+    <script type="text/babel">
+      const Form = () => {
+        const handleSubmit = (event) => {
+          event.preventDefault();
+          console.log(event.target[0].value);
+          console.log(event.target.elements[0].value);
+        };
+        return (
+          <form onSubmit={handleSubmit}>
+            {["username", "email"].map((elem) => {
+              return (
+                <React.Fragment key={elem}>
+                  <label htmlFor={elem}> {elem}</label>
+                  <input id={elem} type="text" placeholder={elem} />
+                </React.Fragment>
+              );
+            })}
+            <button type="submit"> Submit</button>
+          </form>
+        );
+      };
+      ReactDOM.render(<Form />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
