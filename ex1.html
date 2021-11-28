@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      const element = document.createElement("div");
+      element.innerText = "parent";
+      document.body.append(element);
+      element.style.color = "red";
+      element.style.backgroundColor = "lime";
+      element.style.border = "1px solid black";
+      element.style.padding = "20px";
+      element.style.width = "max-content";
+
+      const child = document.createElement("div");
+      element.append(child);
+      child.innerText = "child";
+      child.style.color = "blue";
+      child.style.backgroundColor = "tomato";
+      child.style.border = "1px solid black";
+      child.style.padding = "20px";
+      child.style.width = "max-content";
+
+      element.append(" my name is");
+      // append can be a text but appendChild must a dom node
+      const child2 = document.createElement("div");
+      element.appendChild(child2);
+      child2.innerText = "child2";
+      child2.style.color = "blue";
+      child2.style.backgroundColor = "tomato";
+      child2.style.border = "1px solid black";
+      child2.style.padding = "20px";
+      child2.style.width = "max-content";
+    </script>
+  </body>
+</html>
