@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div style="background-color: green; padding: 20px" id="root"></div>
+    <script type="text/babel">
+      const Box = ({
+        style = { width: "50px", height: "50px", backgroundColor: "red" },
+        children,
+      }) => {
+        console.log(children);
+        return <div style={style} children={children} />;
+      };
+
+      const boxStyle = {
+        width: "200px",
+        height: "200px",
+        padding: "20px",
+        backgroundColor: "yellow",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      };
+      ReactDOM.render(
+        <Box style={boxStyle} children={<h1>hello</h1>} />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
