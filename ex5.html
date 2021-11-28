@@ -31,12 +31,31 @@
   </head>
   <body>
     <div id="root">hello</div>
+
     <script type="text/babel">
       const Form = () => {
+        const emailRef = React.useRef();
+        const usernameRef = React.useRef();
+
         const handleSubmit = (event) => {
           event.preventDefault();
           console.log(event.target[0].value);
           console.log(event.target.elements[0].value);
+        };
+
+        React.useEffect(() => {
+          const handleKeypress = (e) => {
+            if (e.key === "k") {
+              alert("you typed k");
+            }
+          };
+          emailRef.current.addEventListener("keypress", handleKeypress);
+          return () =>
+            emailRef.current.removeEventListener("keypress", handleKeypress);
+        }, []);
+
+        const handleChange = (event) => {
+          console.log(emailRef.current.value);
         };
         return (
           <form onSubmit={handleSubmit}>
@@ -44,7 +63,13 @@
               return (
                 <React.Fragment key={elem}>
                   <label htmlFor={elem}> {elem}</label>
-                  <input id={elem} type="text" placeholder={elem} />
+                  <input
+                    ref={elem === "email" ? emailRef : usernameRef}
+                    onChange={handleChange}
+                    id={elem}
+                    type="text"
+                    placeholder={elem}
+                  />
                 </React.Fragment>
               );
             })}
