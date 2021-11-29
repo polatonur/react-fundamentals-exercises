@@ -43,19 +43,26 @@
           console.log(event.target.elements[0].value);
         };
 
-        React.useEffect(() => {
-          const handleKeypress = (e) => {
-            if (e.key === "k") {
-              alert("you typed k");
-            }
-          };
-          emailRef.current.addEventListener("keypress", handleKeypress);
-          return () =>
-            emailRef.current.removeEventListener("keypress", handleKeypress);
-        }, []);
+        // React.useEffect(() => {
+        //   const handleKeypress = (e) => {
+        //     if (e.key === "k") {
+        //       alert("you typed k");
+        //     }
+        //   };
+        //   emailRef.current.addEventListener("keypress", handleKeypress);
+        //   return () =>
+        //     emailRef.current.removeEventListener("keypress", handleKeypress);
+        // }, []);
 
         const handleChange = (event) => {
           console.log(emailRef.current.value);
+        };
+
+        const handleKeypress = (e) => {
+          console.log("keypress");
+          if (e.key === "k") {
+            alert("you typed k");
+          }
         };
         return (
           <form onSubmit={handleSubmit}>
@@ -64,6 +71,7 @@
                 <React.Fragment key={elem}>
                   <label htmlFor={elem}> {elem}</label>
                   <input
+                    onKeyPress={handleKeypress}
                     ref={elem === "email" ? emailRef : usernameRef}
                     onChange={handleChange}
                     id={elem}
